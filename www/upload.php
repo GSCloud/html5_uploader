@@ -7,4 +7,8 @@ foreach ($_FILES as $key => &$file) {
 }
 
 // debugging information
+echo "<h2>FILES</h2>";
 print_r($_FILES);
+
+echo "<h2>POST</h2>";
+print_r($_POST);
