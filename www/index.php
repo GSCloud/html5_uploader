@@ -11,11 +11,19 @@
       font-family: Helvetica, sans-serif;
     }
 
+    h1 {
+      padding: 1em;
+      margin: auto;
+      text-align: center;
+    }
+
     #mydrop {
       width: 300px;
       height: 300px;
       border: 4px dashed blue;
       padding: 1em;
+      margin: auto;
+      text-align: center;
     }
 
     .dragover {
@@ -23,14 +31,14 @@
     }
 
   </style>
-  <script src="jquery-3.5.1.min.js"></script>
-  <script src="zeroupload.min.js"></script>
+  <script src="./jquery-3.5.1.min.js"></script>
+  <script src="./zeroupload.min.js"></script>
 </head>
 
 <body>
   <h1>HTML5 Web Uploader</h1>
-  <div id="mydrop" onClick="ZeroUpload.chooseFiles();">
-    <h2 align="center">
+  <div id="mydrop" onclick="ZeroUpload.chooseFiles();">
+    <h2>
       myší sem přetáhni soubory, nebo klikni a&nbsp;vyber!
     </h2>
   </div>
@@ -43,12 +51,15 @@
     $(document).ready(function () {
       ZeroUpload.setURL('upload.php');
       ZeroUpload.setMaxBytes(100 * 1024 * 1024); // 100 MB
+
       ZeroUpload.on('complete', function (response) {
         $('#results').html('<h2>Upload completed.</h2><pre>' + response.data + '</pre>');
       });
+
       ZeroUpload.on('start', function (files, userData) {
         $('#results').html('<h2>Upload has started.</h2>');
       });
+
       ZeroUpload.on('progress', function (progress, userData) {
         $('#progress').html(
           '<div><strong>Progress:</strong> ' + progress.percent + ', ' +
@@ -58,6 +69,7 @@
           '<div><strong>Remaining:</strong> ' + progress.remainingTimeHuman + '</div>'
         );
       });
+
       ZeroUpload.init();
       ZeroUpload.addDropTarget('#mydrop');
     });
